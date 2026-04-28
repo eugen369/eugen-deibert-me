@@ -1,0 +1,242 @@
+// ============================================================
+// app.scss — Top Nav + Layout Shell
+// ============================================================
+
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// ── Top Navigation ───────────────────────────────────────────
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: rgba(15, 17, 23, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    gap: 0.25rem;
+
+    a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        padding: 0.4rem 0.75rem;
+        border-radius: var(--radius-sm);
+        transition:
+            color 0.15s ease,
+            background 0.15s ease;
+        letter-spacing: 0.01em;
+
+        &:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        &.active,
+        &.router-link-active {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+    }
+
+    > a:first-child {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-right: 1.5rem;
+        font-size: 0.95rem;
+        background: none;
+        letter-spacing: -0.01em;
+
+        &:hover {
+            background: none;
+            color: var(--text-link);
+        }
+    }
+
+    .nav-brand-right {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 1.78rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .theme-toggle {
+        background: none;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        color: var(--text-muted);
+        cursor: pointer;
+        font-size: 0.9rem;
+        padding: 0.3rem 0.5rem;
+        margin-left: 0.5rem;
+        transition:
+            border-color 0.15s ease,
+            color 0.15s ease;
+
+        &:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+    }
+}
+
+// Light Mode nav link fix
+body.light nav a {
+    color: #9ca3af !important;
+
+    &:first-child {
+        color: var(--text-primary) !important;
+    }
+}
+
+// ── Responsive ───────────────────────────────────────────────
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+
+    span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--text-secondary);
+        border-radius: 2px;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+    }
+}
+
+.nav-overlay {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    nav {
+        flex-wrap: wrap;
+        padding: 0 1rem;
+
+        // Home-Link bleibt links
+        a:first-child {
+            flex: 1;
+        }
+
+        // Hamburger einblenden
+        .hamburger {
+            display: flex;
+        }
+
+        // Theme-Toggle bleibt rechts neben Hamburger
+        .theme-toggle {
+            margin-left: 0;
+        }
+
+        // Brand rechts verstecken auf Mobile
+        .nav-brand-right {
+            display: none;
+        }
+
+        // Nav-Links standardmäßig verstecken
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            padding: 0.5rem 0 1rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            gap: 0;
+
+            a {
+                padding: 0.75rem 0.25rem;
+                border-bottom: 1px solid var(--border-subtle);
+                font-size: 0.9rem;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        // Menü offen
+        &.menu-open {
+            .nav-links {
+                display: flex;
+            }
+
+            .hamburger span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+        // .nav-links {
+        //     background: var(--bg-primary);
+        // }
+
+        // .hamburger {
+        //     background: var(--bg-primary);
+        // }
+
+        // .theme-toggle {
+        //     background: var(--bg-primary);
+        // }
+    }
+    .nav-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        top: var(--nav-height);
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        z-index: 99;
+
+        &.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+}
+
+// ── Tablet ───────────────────────────────────────────────────
+@media (min-width: 641px) and (max-width: 1024px) {
+    nav {
+        padding: 0 1.25rem;
+
+        a {
+            padding: 0.4rem 0.5rem;
+            font-size: 0.82rem;
+        }
+
+        .nav-brand-right {
+            font-size: 0.72rem;
+        }
+    }
+}

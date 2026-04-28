@@ -1,0 +1,21 @@
+<div class="page-container">
+    @if (loading$ | async) {
+        <div class="loading">
+            <p>Lade Inhalt...</p>
+        </div>
+    } @else {
+        @if (error$ | async; as error) {
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        }
+
+        @if (currentPage$ | async; as page) {
+            @if (page.imageUrl) {
+                <img class="page-hero" [src]="page.imageUrl" [alt]="page.title" />
+            }
+            <h1>{{ page.title }}</h1>
+            <p class="page-content" [innerHTML]="page.content"></p>
+        }
+    }
+</div>

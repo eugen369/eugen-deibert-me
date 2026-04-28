@@ -1,0 +1,125 @@
+// ============================================================
+// home.scss — Post-Übersicht
+// ============================================================
+
+.posts-overview {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: calc(var(--nav-height) + 1rem) 2rem 4rem;
+
+    h1 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+// ── Post List ────────────────────────────────────────────────
+.post-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    border: none;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.post-item {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.25rem;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid var(--border-subtle);
+        transition:
+            background 0.15s ease,
+            color 0.15s ease;
+        background: var(--bg-secondary);
+
+        &:hover {
+            background: var(--bg-hover);
+            color: var(--text-link);
+
+            .arrow {
+                opacity: 1;
+                transform: translateX(3px);
+            }
+        }
+
+        .post-title {
+            flex: 1;
+            font-size: 2.1rem;
+            font-weight: 500;
+            font-family: var(--font-content);
+        }
+
+        .arrow {
+            opacity: 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            transition:
+                opacity 0.15s ease,
+                transform 0.15s ease;
+        }
+    }
+
+    &:last-child a {
+        border-bottom: none;
+    }
+}
+
+.post-thumbnail {
+    display: block;
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+}
+
+.post-item a {
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: none;
+
+    &:hover .post-thumbnail {
+        opacity: 1;
+    }
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+// ── Empty state ──────────────────────────────────────────────
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+    .posts-overview {
+        padding: calc(var(--nav-height) + 1rem) 2rem 4rem;
+    }
+}

@@ -1,0 +1,20 @@
+<div class="posts-overview">
+    <ul class="post-list">
+        @for (post of posts$ | async; track post.id) {
+            <li class="post-item">
+                <a [routerLink]="['/post', post.id]">
+                    @if (post.imageUrl) {
+                        <img class="post-thumbnail" [src]="post.imageUrl" [alt]="post.title" />
+                    }
+                    <span class="post-title">{{ post.title }}</span>
+                    <span class="arrow">→</span>
+                </a>
+            </li>
+        }
+    </ul>
+    <div class="center">
+        <a href="http://www.catb.org/hacker-emblem/">
+            <img src="assets/images/glider.png" alt="hacker emblem"
+        /></a>
+    </div>
+</div>

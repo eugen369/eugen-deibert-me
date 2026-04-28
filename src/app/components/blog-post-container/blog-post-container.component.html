@@ -1,0 +1,39 @@
+<div class="blog-post-container">
+    <!-- Loading -->
+    @if (loading$ | async) {
+        <div class="loading">
+            <p>Lade Post...</p>
+        </div>
+    } @else {
+        <!-- Fehler -->
+        @if (errors$ | async; as error) {
+            <div class="error">
+                <p>{{ error }}</p>
+                <button (click)="dismissError()">Schließen</button>
+            </div>
+        }
+
+        <!-- Post-Inhalt -->
+        @if (currentPost$ | async; as post) {
+            @if (post.imageUrl) {
+                <img class="post-hero" [src]="post.imageUrl" [alt]="post.title" />
+            }
+            <div class="post-header">
+                <h2>{{ post.title }}</h2>
+            </div>
+            <div class="post-body" [innerHTML]="post.content"></div>
+        }
+
+        <!-- Kein Post gefunden -->
+        @if (!(currentPost$ | async) && !(loading$ | async) && !(errors$ | async)) {
+            <div>
+                <p>Post nicht gefunden.</p>
+            </div>
+        }
+
+        <!-- Zurück-Button -->
+        @if (!isStaticPage) {
+            <button class="back-btn" (click)="goBack()">← Zurück</button>
+        }
+    }
+</div>

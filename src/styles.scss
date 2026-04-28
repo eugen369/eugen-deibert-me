@@ -1,1 +1,306 @@
-/* You can add global styles to this file, and also import other style files */
+// ============================================================
+// GLOBAL STYLES — eugen-deibert-me
+// Design: Inspired by modelcontextprotocol.io
+// ============================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+// ── CSS Variables ────────────────────────────────────────────
+
+$bp-mobile: 640px;
+$bp-tablet: 1024px;
+
+:root {
+    --bg-primary: #0f1117;
+    --bg-secondary: #161b27;
+    --bg-sidebar: #13171f;
+    --bg-card: #1a2030;
+    --bg-hover: #1e2535;
+    --bg-code: #0d1117;
+
+    --border-color: #252d3d;
+    --border-subtle: #1c2333;
+
+    --text-primary: #e8ecf0;
+    --text-secondary: #8a94a6;
+    --text-muted: #4a5568;
+    --text-link: #60a5fa;
+    --text-link-hover: #93c5fd;
+
+    --accent-primary: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.15);
+    --accent-success: #10b981;
+
+    --font-body: 'Sora', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-content: 'Palatino Linotype', 'Palatino', 'Book Antiqua', Georgia, serif;
+
+    --sidebar-width: 260px;
+    --nav-height: 56px;
+    // --content-max: 760px;
+    --content-max: 760px; // die Breite der ganzen Website
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+}
+
+// Light Mode
+body.light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fb;
+    --bg-sidebar: #f3f4f6;
+    --bg-card: #ffffff;
+    --bg-hover: #eef0f4;
+    --bg-code: #f3f4f6;
+
+    --border-color: #e2e5ea;
+    --border-subtle: #edf0f4;
+
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #9ca3af;
+    --text-link: #2563eb;
+    --text-link-hover: #1d4ed8;
+
+    --accent-primary: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.1);
+}
+
+// ── Reset ────────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 15px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+body.light nav a {
+    color: #9ca3af !important;
+}
+
+// ── Typography ───────────────────────────────────────────────
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+}
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    margin-top: 1.75rem;
+    color: var(--text-secondary);
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+a {
+    color: var(--text-link);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    &:hover {
+        color: var(--text-link-hover);
+    }
+}
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--bg-code);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.15em 0.4em;
+    color: #93c5fd;
+}
+
+pre {
+    background: var(--bg-code);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin: 1.25rem 0;
+
+    code {
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--text-primary);
+    }
+}
+
+ul,
+ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    li {
+        margin-bottom: 0.35rem;
+        font-size: 0.95rem;
+    }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+// ── Scrollbar ────────────────────────────────────────────────
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+// ── Shared utilities ─────────────────────────────────────────
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    padding: 2rem 0;
+}
+
+.error {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    color: #fca5a5;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+// body > app-root > * {
+//     padding-top: var(--nav-height);
+// }
+
+// ── Markdown Content ─────────────────────────────────────────
+.post-body,
+.page-content {
+    // fuer die Styles vom mit Markdown generierten Text
+    p {
+        font-family: var(--font-content);
+        font-size: 1.6rem;
+        line-height: 1.8;
+        color: var(--text-secondary);
+    }
+
+    // damit der globale ul li-Style nicht hier in styles.scss greift und die Schriftart/groesse ueberschreibt
+    ul, ol {
+            font-family: var(--font-content);
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+
+            li {
+                font-family: var(--font-content);
+                font-size: 1.6rem;
+            }
+        }
+
+    // =================================================
+
+    img {
+        max-width: 100%;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-color);
+        margin: 1.25rem 0;
+    }
+
+    a {
+        color: var(--text-link);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover {
+            color: var(--text-link-hover);
+        }
+    }
+
+    strong {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    em {
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+    blockquote {
+        border-left: 3px solid var(--accent-primary);
+        padding: 0.5rem 0 0.5rem 1.25rem;
+        margin: 1.25rem 0;
+        color: var(--text-muted);
+        font-style: italic;
+    }
+}

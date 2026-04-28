@@ -1,0 +1,67 @@
+// ============================================================
+// page-container.component.scss — Statische Seiten
+// (About, Coding, Contact)
+// ============================================================
+
+.page-container {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: calc(var(--nav-height) + 1rem) 2rem 4rem;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ── Page header ──────────────────────────────────────────────
+.page-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+
+    h1 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 0;
+    }
+}
+
+.page-hero {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: none;
+    border-radius: var(--radius-lg);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+@media (max-width: 640px) {
+    .page-hero {
+        height: 200px;
+        border-radius: var(--radius-md);
+    }
+}
+
+// ── Page content ─────────────────────────────────────────────
+.page-content {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+    .page-container {
+        padding: calc(var(--nav-height) + 1.5rem) 1.25rem 3rem;
+    }
+}
