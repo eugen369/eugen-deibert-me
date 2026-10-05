@@ -8,5 +8,7 @@ export const routes: Routes = [
     { path: 'post/:id', component: BlogPostContainerComponent },
     { path: 'about', component: PageContainerComponent, data: { pageId: 'about' } },
     { path: 'coding', component: PageContainerComponent, data: { pageId: 'coding' } },
-    { path: 'contact', component: PageContainerComponent, data: { pageId: 'contact' } }
+    { path: 'contact', component: PageContainerComponent, data: { pageId: 'contact' } },
+    { path: 'skills', component: PageContainerComponent, data: { pageId: 'skills' } },
+    { path: 'projects', component: PageContainerComponent, data: { pageId: 'projects' } }
 ]
