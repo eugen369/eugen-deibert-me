@@ -12,7 +12,16 @@
 
         @if (currentPage$ | async; as page) {
             @if (page.imageUrl) {
-                <img class="page-hero" [src]="page.imageUrl" [alt]="page.title" />
+                <figure class="page-hero-figure">
+                    <img class="page-hero" [src]="page.imageUrl" [alt]="page.imageAlt || page.title" />
+                    @if (page.imageCredit && page.imageCreditUrl) {
+                        <figcaption class="page-image-credit">
+                            <a [href]="page.imageCreditUrl" target="_blank" rel="noopener noreferrer">
+                                Foto: {{ page.imageCredit }}
+                            </a>
+                        </figcaption>
+                    }
+                </figure>
             }
             <h1>{{ page.title }}</h1>
             <p class="page-content" [innerHTML]="page.content"></p>

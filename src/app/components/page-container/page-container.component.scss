@@ -35,6 +35,10 @@
     }
 }
 
+.page-hero-figure {
+    margin: 0 0 2rem;
+}
+
 .page-hero {
     display: block;
     width: 100%;
@@ -42,8 +46,26 @@
     object-fit: contain;
     background: none;
     border-radius: var(--radius-lg);
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     border: 1px solid var(--border-color);
+}
+
+.page-image-credit {
+    margin: 0.4rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-align: right;
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+            color: var(--text-link-hover);
+        }
+    }
 }
 
 @media (max-width: 640px) {
