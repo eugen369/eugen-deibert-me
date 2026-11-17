@@ -5,6 +5,17 @@ import { BlogPost } from '../models/blog-post.model'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 
+DOMPurify.addHook('afterSanitizeAttributes', node => {
+    if (node.nodeName !== 'A') return
+
+    const link = node as HTMLAnchorElement
+    const href = link.getAttribute('href')
+    if (!href || !/^https?:\/\//i.test(href)) return
+
+    link.setAttribute('target', '_blank')
+    link.setAttribute('rel', 'noopener noreferrer')
+})
+
 @Injectable({
     providedIn: 'root'
 })

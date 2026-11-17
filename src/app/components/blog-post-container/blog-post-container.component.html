@@ -16,7 +16,16 @@
         <!-- Post-Inhalt -->
         @if (currentPost$ | async; as post) {
             @if (post.imageUrl) {
-                <img class="post-hero" [src]="post.imageUrl" [alt]="post.title" />
+                <figure class="post-hero-figure">
+                    <img class="post-hero" [src]="post.imageUrl" [alt]="post.imageAlt || post.title" />
+                    @if (post.imageCredit && post.imageCreditUrl) {
+                        <figcaption class="post-image-credit">
+                            <a [href]="post.imageCreditUrl" target="_blank" rel="noopener noreferrer">
+                                Foto: {{ post.imageCredit }}
+                            </a>
+                        </figcaption>
+                    }
+                </figure>
             }
             <div class="post-header">
                 <h2>{{ post.title }}</h2>
