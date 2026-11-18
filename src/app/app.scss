@@ -140,6 +140,9 @@ body.light nav a {
         a:first-child {
             flex: 1;
         }
+        > a:first-child.router-link-active {
+            border-bottom: none;
+        }
 
         // Hamburger einblenden
         .hamburger {
